@@ -11,13 +11,23 @@ tst::Test::~Test()
 tst::TestResult tst::Test::prepare(char* test, char* ctrl)
 {
     tst::TestResult res;
-    cap_test.open(test);
-    cap_ctrl.open(ctrl);
-
-    if (!cap_test.isOpened())
+    try
+    {
+        cap_test.open(test);
+    }
+    catch(const std::exception& e)
+    {
         res.results["fail opening source file"] = "test";
-    if (!cap_ctrl.isOpened())
+    }
+
+    try
+    {
+        cap_ctrl.open(ctrl);
+    }
+    catch(const std::exception& e)
+    {
         res.results["fail opening source file"] = "control";
+    }
     
     res.success = !res.results.empty();
     res.test_name = test_name;
@@ -48,13 +58,14 @@ void tst::TestResult::print(std::ostream& out)
     const char* tab = "\t";
     const char* colon = ":";
 
+    const char* status = success ? "[SUCC] " : "[FAIL] ";
     // print the test name
-    out << test_name;
+    out << status << test_name;
     
     // iterate over all result fields
     for (auto it = results.begin(); it != results.end(); ++it)
     {
-        out << (success ? "[SUCC]" : "[FAIL]") << tab << it->first << colon << it->second;
+        out << tab << it->first << colon << it->second;
     }
 
     // print a newline at end and flush
@@ -100,7 +111,8 @@ void tst::TestBed::execute(unsigned int threads)
             test->teardown();
         }
         res = test->execute();
-        res.print(std::cout);
         test->teardown();
+
+        results.push_back(res);
     }
 }
