@@ -1,0 +1,3 @@
+/home/haxx/Code/Main-Repo/VideoComparer/CMakeFiles/rebuild_cache.dir
+/home/haxx/Code/Main-Repo/VideoComparer/CMakeFiles/VideoComparer.dir
+/home/haxx/Code/Main-Repo/VideoComparer/CMakeFiles/edit_cache.dir
