@@ -4,6 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/haxx/Code/Main-Repo/VideoComparer/TestAbsDiff.cpp" "/home/haxx/Code/Main-Repo/VideoComparer/CMakeFiles/VideoComparer.dir/TestAbsDiff.cpp.o"
+  "/home/haxx/Code/Main-Repo/VideoComparer/TestBed.cpp" "/home/haxx/Code/Main-Repo/VideoComparer/CMakeFiles/VideoComparer.dir/TestBed.cpp.o"
   "/home/haxx/Code/Main-Repo/VideoComparer/VideoComparer.cpp" "/home/haxx/Code/Main-Repo/VideoComparer/CMakeFiles/VideoComparer.dir/VideoComparer.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

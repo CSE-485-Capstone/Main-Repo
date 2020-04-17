@@ -36,6 +36,13 @@ tst::TestResult tst::Test::execute()
     return res;
 }
 
+void tst::Test::teardown()
+{
+    if (cap_test.isOpened())
+        cap_test.release();
+    if (cap_ctrl.isOpened())
+        cap_ctrl.release(); }
+
 void tst::TestResult::print(std::ostream& out)
 {
     const char* tab = "\t";
@@ -47,7 +54,7 @@ void tst::TestResult::print(std::ostream& out)
     // iterate over all result fields
     for (auto it = results.begin(); it != results.end(); ++it)
     {
-        out << tab << it->first << colon << it->second;
+        out << (success ? "[SUCC]" : "[FAIL]") << tab << it->first << colon << it->second;
     }
 
     // print a newline at end and flush
@@ -83,8 +90,17 @@ void tst::TestBed::execute(unsigned int threads)
 
     for (auto it = tests.begin(); it != tests.end(); ++it)
     {
+        TestResult res;
         Test* test = *it;
-        test->prepare(p_test, p_ctrl);
-        test->execute();
+        res = test->prepare(p_test, p_ctrl);
+        if (!res.success)
+        {
+            res.print(std::cerr);
+            continue;
+            test->teardown();
+        }
+        res = test->execute();
+        res.print(std::cout);
+        test->teardown();
     }
 }

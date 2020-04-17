@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/VideoComparer.dir/TestAbsDiff.cpp.o"
+  "CMakeFiles/VideoComparer.dir/TestBed.cpp.o"
   "CMakeFiles/VideoComparer.dir/VideoComparer.cpp.o"
   "VideoComparer"
   "VideoComparer.pdb"

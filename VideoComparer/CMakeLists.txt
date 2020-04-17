@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
 project(VideoComparer)
 find_package(OpenCV REQUIRED)
-add_executable(VideoComparer VideoComparer.cpp TestBed.cpp)
+add_executable(VideoComparer VideoComparer.cpp TestBed.cpp TestAbsDiff.cpp)
 target_link_libraries(VideoComparer ${OpenCV_LIBS})

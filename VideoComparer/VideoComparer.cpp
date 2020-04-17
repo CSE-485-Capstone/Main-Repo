@@ -1,5 +1,7 @@
 #include "TestBed.h"
 
+#include "TestAbsDiff.h"
+
 #include <iostream>
 
 
@@ -15,4 +17,11 @@ int main(int argc, char** argv)
     char* test = argv[2];
 
     tst::TestBed bed(control, test);
+
+    tests::AbsDiffTest absDiffTest;
+    bed.queue_test(dynamic_cast<tst::Test*>(&absDiffTest));
+
+    bed.execute(1);
+
+    return 0;
 }

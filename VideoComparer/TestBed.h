@@ -32,6 +32,7 @@ namespace tst
 
         TestResult prepare(char* test, char* ctrl);
         virtual TestResult execute();
+        void teardown();
     };
 
     class TestBed
