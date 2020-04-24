@@ -128,7 +128,7 @@ class Tester:
                     _, _ = vmaf_proc.communicate()
                     vmaf_proc.wait()
 
-                    with open(path.join(self.temp, 'vmaf_output.xml'), 'r') as vmaf_out:
+                    with open(path.join(self.temp, 'vmaf_output.xml'), 'w') as vmaf_out:
                         self.testResults[fil][codec['name']][profile] = vmaf_out.read()
 
                     print(f'vmaf testing complete...')
