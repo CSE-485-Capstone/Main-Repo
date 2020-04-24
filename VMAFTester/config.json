@@ -1,0 +1,108 @@
+{
+    "codecs": [
+        {
+            "name": "h.265/HEVC",
+            "encoder": "hevc_nvenc",
+            "container": "mkv",
+            "color": "yuv444p10le",
+            "profiles": [
+                { "crf": "0", "profile": "ultrafast" },
+                { "crf": "1", "profile": "superfast" },
+                { "crf": "4", "profile": "veryfast" },
+                { "crf": "6", "profile": "faster" },
+                { "crf": "8", "profile": "fast" },
+                { "crf": "12", "profile": "medium" },
+                { "crf": "14", "profile": "slow" },
+                { "crf": "20", "profile": "slower" },
+                { "crf": "24", "profile": "veryslow" }
+            ],
+            "command": [
+               { "arg": "-i" },
+               { "arg": "{fileinput}" },
+               { "arg": "-c:v" },
+               { "arg": "{encoder}" },
+               { "arg": "-crf"},
+               { "arg": "{crf}"},
+               { "arg": "-c:a" },
+               { "arg": "copy" },
+               { "arg": "{fileoutput}" }
+            ]
+        },
+        {
+            "name": "h.264",
+            "encoder": "libx264",
+            "container": "h264",
+            "color": "yuv444p10le",
+            "profiles": [
+                { "profile": "ultrafast" },
+                { "profile": "superfast" },
+                { "profile": "veryfast" },
+                { "profile": "faster" },
+                { "profile": "fast" },
+                { "profile": "medium" },
+                { "profile": "slow" },
+                { "profile": "slower" },
+                { "profile": "veryslow" }
+            ],
+            "command": [
+                { "arg": "-i" },
+                { "arg": "{fileinput}" },
+                { "arg": "-c:v" },
+                { "arg": "{encoder}" },
+                { "arg": "-preset" },
+                { "arg": "{profile}" },
+                { "arg": "-crf"},
+                { "arg": "22"},
+                { "arg": "-c:a" },
+                { "arg": "copy" },
+                { "arg": "{fileoutput}" }
+            ]
+        },
+        {
+            "name": "VP9",
+            "encoder": "libvpx-vp9",
+            "container": "mkv",
+            "color": "yuv444p10le",
+            "profiles": [
+                {
+                    "profile": "1M",
+                    "bitrate_min": "1M",
+                    "bitrate_max": "1M"
+                },
+                {
+                    "profile": "2M",
+                    "bitrate_min": "2M",
+                    "bitrate_max": "2M"
+                },
+                {
+                    "profile": "4M",
+                    "bitrate_min": "4M",
+                    "bitrate_max": "4M"
+                },
+                {
+                    "profile": "8M",
+                    "bitrate_min": "8M",
+                    "bitrate_max": "8M"
+                },
+                {
+                    "profile": "16M",
+                    "bitrate_min": "16M",
+                    "bitrate_max": "16M"
+                }
+            ],
+            "command": [
+                { "arg": "-i" },
+                { "arg": "{fileinput}" },
+                { "arg": "-c:v" },
+                { "arg": "{encoder}" },
+                { "arg": "-minrate" },
+                { "arg": "{bitrate_min}" },
+                { "arg": "-b:v" },
+                { "arg": "{bitrate_max}" },
+                { "arg": "-maxrate" },
+                { "arg": "{bitrate_max}" },
+                { "arg": "{fileoutput}" }
+            ]
+        }
+    ]
+}

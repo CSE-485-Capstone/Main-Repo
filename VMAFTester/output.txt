@@ -1,0 +1,2 @@
+discovered source: /mnt/hdd/Fox-Data/0103WWC70219TM0.mov	 codec: dnxhd	 duration: 10.010000	 res: (1280, 720)
+discovered source: /mnt/hdd/Fox-Data/1TNFO24DY0C.mov	 codec: qtrle	 duration: 30.030000	 res: (1280, 720)
