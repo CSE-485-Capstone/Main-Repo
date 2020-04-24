@@ -66,7 +66,7 @@ class Tester:
 
             # 2. convert to the different codecs and profiles
             for codec in self.conf['codecs']:
-                self.testResults[fil][codec['name']] = {}
+                self.testResults[fil][codec['name']] = []
                 args = {
                     "name": codec['name'],
                     "encoder": codec['encoder'],
@@ -114,6 +114,7 @@ class Tester:
                         path.join(self.temp, 'control.yuv'),
                         path.join(self.temp, 'under_test.yuv'),
                         VMAF_MODEL,
+                        '--log',
                         path.join(self.temp, 'vmaf_output.xml'),
                         '--psnr',
                         '--ssim',
@@ -128,8 +129,11 @@ class Tester:
                     _, _ = vmaf_proc.communicate()
                     vmaf_proc.wait()
 
-                    with open(path.join(self.temp, 'vmaf_output.xml'), 'w') as vmaf_out:
-                        self.testResults[fil][codec['name']][profile] = vmaf_out.read()
+                    with open(path.join(self.temp, 'vmaf_output.xml'), 'r') as vmaf_out:
+                        self.testResults[fil][codec['name']].append({
+                            'profile': profile,
+                            'output': vmaf_out.read()
+                        })
 
                     print(f'vmaf testing complete...')
 
